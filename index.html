@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>中南大学信息门户 - 网页版</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 引入一个简单的Icon库（可选），方便演示功能图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    /* 全局样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+
+    body {
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background-color: #0f61a7; /* 中南大学的主色调蓝 */
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    /* 顶部导航布局 */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; /* 允许换行，适配小屏 */
+    }
+
+    .top-nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .top-nav-left img.logo {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 10px;
+    }
+
+    .school-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .top-nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .dark-mode-toggle,
+    .identity-toggle {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 0.9rem;
+    }
+
+    .dark-mode-toggle:hover,
+    .identity-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .student-id {
+      margin-right: 10px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* 搜索栏 */
+    .search-bar {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    /* 功能按钮区域 */
+    .features {
+      max-width: 1200px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .feature-card {
+      background-color: #fff;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #0f61a7;
+    }
+
+    .feature-card p {
+      margin-top: 5px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #333;
+    }
+
+    /* 校园公告 */
+    .announcements {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .announcements .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .announcements h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .announcement-item {
+      margin-bottom: 15px;
+    }
+
+    .announcement-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .announcement-item p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .top-nav-left img.logo {
+        width: 40px;
+        height: 40px;
+      }
+      .school-name {
+        font-size: 1.2rem;
+      }
+      .dark-mode-toggle,
+      .identity-toggle {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+      }
+      .student-id {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页头 -->
+  <header>
+    <div class="top-nav">
+      <!-- 左侧：校徽 + 学校名称 -->
+      <div class="top-nav-left">
+        <!-- 占位图链接，可以替换为实际中南大学校徽资源 -->
+        <img
+          src="https://via.placeholder.com/100x100?text=CSU+Logo"
+          alt="CSU Logo"
+          class="logo"
+        />
+        <span class="school-name">Central South University</span>
+      </div>
+
+      <!-- 右侧：主题切换 + 身份切换 + 学号 + 头像 -->
+      <div class="top-nav-right">
+        <button class="dark-mode-toggle">浅色/深色</button>
+        <button class="identity-toggle">学生/教工</button>
+        <span class="student-id">学号: 1916240407</span>
+        <!-- 占位图链接，可以替换为真实头像资源 -->
+        <img
+          src="https://via.placeholder.com/80x80?text=Avatar"
+          alt="User Avatar"
+          class="avatar"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- 搜索栏 -->
+  <div class="search-bar">
+    <input type="text" placeholder="搜索" />
+  </div>
+
+  <!-- 功能模块区 -->
+  <div class="features">
+    <!-- 模块示例：课表 -->
+    <div class="feature-card" onclick="showMaintenance('课表')">
+      <i class="fas fa-calendar-alt"></i>
+      <p>课表</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('校园卡')">
+      <i class="fas fa-credit-card"></i>
+      <p>校园卡</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('校内通知')">
+      <i class="fas fa-bell"></i>
+      <p>校内通知</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('成绩')">
+      <i class="fas fa-chart-line"></i>
+      <p>成绩</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('图书馆')">
+      <i class="fas fa-book"></i>
+      <p>图书馆</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('中南地图')">
+      <i class="fas fa-map-marked-alt"></i>
+      <p>中南地图</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('请假申请')">
+      <i class="fas fa-file-alt"></i>
+      <p>请假申请</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('校车时刻')">
+      <i class="fas fa-bus"></i>
+      <p>校车时刻</p>
+    </div>
+
+    <div class="feature-card" onclick="showMaintenance('校园邮箱')">
+      <i class="fas fa-envelope"></i>
+      <p>校园邮箱</p>
+    </div>
+    <!-- 可根据需要继续添加更多功能模块 -->
+  </div>
+
+  <!-- 校园公告区域 -->
+  <div class="announcements">
+    <div class="card">
+      <h2>Campus Announcements</h2>
+      <hr />
+      <div class="announcement-item" onclick="showMaintenance('网络维护通知')">
+        <h3>网络维护通知</h3>
+        <p>The planned network maintenance will be carried out on April 10.</p>
+      </div>
+      <div class="announcement-item" onclick="showMaintenance('新书上架')">
+        <h3>图书馆新书上架</h3>
+        <p>Library has new books available for borrowing.</p>
+      </div>
+      <div class="announcement-item" onclick="showMaintenance('校园文艺汇演')">
+        <h3>校园文艺汇演</h3>
+        <p>This weekend will hold a campus performance event.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 简单弹窗提示
+    function showMaintenance(feature) {
+      alert(feature + ' - 系统维护中');
+    }
+  </script>
+</body>
+</html>
